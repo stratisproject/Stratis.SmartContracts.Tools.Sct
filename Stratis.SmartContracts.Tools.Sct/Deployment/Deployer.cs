@@ -3,7 +3,6 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using McMaster.Extensions.CommandLineUtils;
-using Stratis.SmartContracts.Core.Deployment;
 
 namespace Stratis.SmartContracts.Tools.Sct.Deployment
 {
