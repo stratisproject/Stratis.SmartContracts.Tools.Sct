@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using McMaster.Extensions.CommandLineUtils;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
-using McMaster.Extensions.CommandLineUtils;
 
 namespace Stratis.SmartContracts.Tools.Sct.Deployment
 {
@@ -127,9 +127,9 @@ namespace Stratis.SmartContracts.Tools.Sct.Deployment
 
             if (response.Success)
             {
-                console.WriteLine("Contract creation transaction successful!");
-                console.WriteLine($"Transaction Id: {response.TransactionId}");
-                console.WriteLine($"Contract Address: {response.ContractAddress}");
+                console.WriteLine("Contract creation transaction sent to node successfully. Track progress using receipt and transaction ID.");
+                console.WriteLine($"Transaction ID: {response.TransactionId}");
+                console.WriteLine($"Expected contract Address: {response.ContractAddress}");
                 return;
             }
 
