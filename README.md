@@ -2,8 +2,28 @@
 
 A command-line tool for compiling and validating Stratis smart contracts.
 
-To compile, validate, and view the bytecode for a smart contract (.cs file) you've written:
+Takes the relative path of your smart contract (.cs) file, compiles and validates the smart contract. Additionally outputs the contacts hash and bytecode when using the `-sb` flag.
 
+## Using the Tool
+
+From command line, navigate into the Smart Contract Tools project
+
+```console
+cd path/to/Stratis.SmartContracts.Tools.Sct/Stratis.SmartContracts.Tools.Sct
 ```
-dotnet run -- validate [CONTRACT_PATH_HERE] -sb
+
+### Validating a Smart Contract
+
+Using the relative path to your smart contracts project file:
+
+```console
+dotnet run validate ../../path/to/contract.cs
+```
+
+### Generating Smart Contracts Hash and Bytecode
+
+Validate, compile, and output the contracts hash and bytecode using the same validate command but with the addition of the `-sb` flag:
+
+```console
+dotnet run validate ../../path/to/contract.cs -sb
 ```
