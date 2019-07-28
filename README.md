@@ -6,10 +6,12 @@ Takes the relative path of your smart contract (.cs) file, compiles and validate
 
 ## Using the Tool
 
-From command line, navigate into the Smart Contract Tools project
+From command line, navigate into the Smart Contract Tools project.
+
+**Note:** Navigate into the `Stratis.SmartContracts.Tools.Sct` project within the cloned directory. It is located right beside the solution file and tests project directory.
 
 ```console
-cd path/to/Stratis.SmartContracts.Tools.Sct/Stratis.SmartContracts.Tools.Sct
+cd Stratis.SmartContracts.Tools.Sct/Stratis.SmartContracts.Tools.Sct
 ```
 
 ### Validating a Smart Contract
