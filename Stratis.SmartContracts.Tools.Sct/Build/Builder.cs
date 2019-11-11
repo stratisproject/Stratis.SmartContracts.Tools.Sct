@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using McMaster.Extensions.CommandLineUtils;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
-using McMaster.Extensions.CommandLineUtils;
 
 namespace Stratis.SmartContracts.Tools.Sct.Build
 {
@@ -32,14 +32,8 @@ namespace Stratis.SmartContracts.Tools.Sct.Build
         public int OnExecute(CommandLineApplication app, IConsole console)
         {
             console.WriteLine();
-            console.WriteLine("Smart Contract Deployer");
+            console.WriteLine("Smart Contract Builder");
             console.WriteLine();
-
-            if (!File.Exists(this.InputFile))
-            {
-                console.WriteLine($"{this.InputFile} does not exist");
-                return 1;
-            }
 
             if (File.Exists(this.OutputPath))
             {
@@ -47,20 +41,10 @@ namespace Stratis.SmartContracts.Tools.Sct.Build
                 return 1;
             }
 
-            console.WriteLine($"Reading {this.InputFile}...");
+            string source = SourceLoader.GetSourceFromFileOrDirectoryName(this.InputFile, console);
 
-            string source;
-            using (var sr = new StreamReader(File.OpenRead(this.InputFile)))
+            if (source == null)
             {
-                source = sr.ReadToEnd();
-            }
-
-            console.WriteLine($"Read {this.InputFile} OK!");
-            console.WriteLine();
-
-            if (string.IsNullOrWhiteSpace(source))
-            {
-                console.WriteLine($"Empty file at {this.InputFile}");
                 return 1;
             }
 

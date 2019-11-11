@@ -1,6 +1,5 @@
 ﻿using McMaster.Extensions.CommandLineUtils;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -67,27 +66,10 @@ namespace Stratis.SmartContracts.Tools.Sct.Deployment
             console.WriteLine("Smart Contract Deployer");
             console.WriteLine();
 
-            if (!File.Exists(this.InputFile))
+            string source = SourceLoader.GetSourceFromFileOrDirectoryName(this.InputFile, console);
+
+            if (source == null)
             {
-                console.WriteLine($"{this.InputFile} does not exist");
-                return 1;
-            }
-
-            string source;
-
-            console.WriteLine($"Reading {this.InputFile}");
-
-            using (var sr = new StreamReader(File.OpenRead(this.InputFile)))
-            {
-                source = sr.ReadToEnd();
-            }
-
-            console.WriteLine($"Read {this.InputFile} OK");
-            console.WriteLine();
-
-            if (string.IsNullOrWhiteSpace(source))
-            {
-                console.WriteLine($"Empty file at {this.InputFile}");
                 return 1;
             }
 

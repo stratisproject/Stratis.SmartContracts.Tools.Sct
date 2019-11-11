@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using McMaster.Extensions.CommandLineUtils;
-using Stratis.SmartContracts.CLR.Validation;
+﻿using McMaster.Extensions.CommandLineUtils;
 using Stratis.SmartContracts.CLR;
 using Stratis.SmartContracts.CLR.Compilation;
+using Stratis.SmartContracts.CLR.Validation;
 using Stratis.SmartContracts.Tools.Sct.Report;
 using Stratis.SmartContracts.Tools.Sct.Report.Sections;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Stratis.SmartContracts.Tools.Sct.Validation
 {
@@ -23,7 +22,7 @@ namespace Stratis.SmartContracts.Tools.Sct.Validation
             Description = "Show contract compilation bytes")]
         public bool ShowBytes { get; }
 
-        private int OnExecute(CommandLineApplication app)
+        private int OnExecute(CommandLineApplication app, IConsole console)
         {
             if (!this.InputFiles.Any())
             {
@@ -43,29 +42,11 @@ namespace Stratis.SmartContracts.Tools.Sct.Validation
 
             foreach (string file in this.InputFiles)
             {
-                if (!File.Exists(file))
+                string source = SourceLoader.GetSourceFromFileOrDirectoryName(file, console);
+
+                if (source == null)
                 {
-                    Console.WriteLine($"{file} does not exist");
-                    continue;
-                }
-
-                string source;
-
-                Console.WriteLine($"Reading {file}");
-
-                using (var sr = new StreamReader(File.OpenRead(file)))
-                {
-                    source = sr.ReadToEnd();
-                }
-
-                Console.WriteLine($"Read {file} OK");
-                Console.WriteLine();
-
-                if (string.IsNullOrWhiteSpace(source))
-                {
-                    Console.WriteLine($"Empty file at {file}");
-                    Console.WriteLine();
-                    continue;
+                    return 1;
                 }
 
                 var validationData = new ValidationReportData

@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using System.Reflection;
-using McMaster.Extensions.CommandLineUtils;
-using Stratis.SmartContracts.CLR.Validation;
+﻿using McMaster.Extensions.CommandLineUtils;
 using Stratis.SmartContracts.CLR;
 using Stratis.SmartContracts.CLR.Compilation;
 using Stratis.SmartContracts.CLR.Serialization;
+using Stratis.SmartContracts.CLR.Validation;
 using Stratis.SmartContracts.Networks;
+using System.Linq;
+using System.Reflection;
 
 namespace Stratis.SmartContracts.Tools.Sct
 {
