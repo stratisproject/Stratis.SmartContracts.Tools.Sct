@@ -5,7 +5,7 @@ using System.IO;
 namespace Stratis.SmartContracts.Tools.Sct
 {
     /// <summary>
-    /// Loads source for the given file or directory.
+    /// Helpful methods for loading contract compilations from a given file or directory name.
     /// </summary>
     public static class CompilationLoader
     {
