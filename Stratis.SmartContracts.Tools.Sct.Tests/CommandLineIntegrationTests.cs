@@ -45,6 +45,25 @@ namespace Stratis.SmartContracts.Tools.Sct.Tests
         }
 
         [Fact]
+        public void DirectoryNotFoundFriendlyError()
+        {
+            using (var consoleOutput = new ConsoleOutput())
+            {
+                string[] args = new string[]
+                {
+                    "validate",
+                    "NonExistentDirectory",
+                    "-sb"
+                };
+                Program.Main(args);
+
+                string consoleText = consoleOutput.GetOuput();
+
+                Assert.Contains("No file or directory NonExistentDirectory exists.", consoleText);
+            }
+        }
+
+        [Fact]
         public void MultipleFileCompilationWithByteCode()
         {
             using (var consoleOutput = new ConsoleOutput())
