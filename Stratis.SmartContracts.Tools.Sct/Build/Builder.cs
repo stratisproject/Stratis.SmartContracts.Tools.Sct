@@ -44,6 +44,12 @@ namespace Stratis.SmartContracts.Tools.Sct.Build
 
             ContractCompilationResult result = CompilationLoader.CompileFromFileOrDirectoryName(this.InputFile, console);
 
+            // Check if the file was found.
+            if (result == null)
+            {
+                return 1;
+            }
+
             ValidationServiceResult validationResult = ValidatorService.Validate(this.InputFile, result, console, this.Params);
             if (!validationResult.Success)
                 return 1;
