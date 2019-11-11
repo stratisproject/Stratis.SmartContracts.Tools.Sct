@@ -1,5 +1,6 @@
 ﻿using Stratis.SmartContracts;
 
+[Deploy]
 public class Bazaar : SmartContract
 {
     public Bazaar(ISmartContractState smartContractState, Address partyA, ulong balancePartyA, Address partyB, ulong balancePartyB)

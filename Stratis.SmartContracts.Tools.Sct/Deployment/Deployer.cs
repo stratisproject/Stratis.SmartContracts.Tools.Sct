@@ -1,4 +1,5 @@
 ﻿using McMaster.Extensions.CommandLineUtils;
+using Stratis.SmartContracts.CLR.Compilation;
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -66,14 +67,10 @@ namespace Stratis.SmartContracts.Tools.Sct.Deployment
             console.WriteLine("Smart Contract Deployer");
             console.WriteLine();
 
-            string source = SourceLoader.GetSourceFromFileOrDirectoryName(this.InputFile, console);
+            ContractCompilationResult result = CompilationLoader.CompileFromFileOrDirectoryName(this.InputFile, console);
 
-            if (source == null)
-            {
-                return 1;
-            }
+            ValidationServiceResult validationResult = ValidatorService.Validate(this.InputFile, result, console, this.Params);
 
-            ValidationServiceResult validationResult = new ValidatorService().Validate(this.InputFile, source, console, this.Params);
             if (!validationResult.Success)
                 return 1;
             else

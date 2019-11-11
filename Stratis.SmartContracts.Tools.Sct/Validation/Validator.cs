@@ -42,13 +42,6 @@ namespace Stratis.SmartContracts.Tools.Sct.Validation
 
             foreach (string file in this.InputFiles)
             {
-                string source = SourceLoader.GetSourceFromFileOrDirectoryName(file, console);
-
-                if (source == null)
-                {
-                    return 1;
-                }
-
                 var validationData = new ValidationReportData
                 {
                     FileName = file,
@@ -60,8 +53,7 @@ namespace Stratis.SmartContracts.Tools.Sct.Validation
 
                 reportData.Add(validationData);
 
-                Console.WriteLine($"Compiling...");
-                ContractCompilationResult compilationResult = ContractCompiler.Compile(source);
+                ContractCompilationResult compilationResult = CompilationLoader.CompileFromFileOrDirectoryName(file, console);
 
                 validationData.CompilationSuccess = compilationResult.Success;
 
