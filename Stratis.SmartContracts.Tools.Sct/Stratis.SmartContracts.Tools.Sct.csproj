@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
 	<CodeAnalysisRuleSet>..\None.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.2.0" />
-    <PackageReference Include="Stratis.SmartContracts" Version="1.4.1-alpha" />
-    <PackageReference Include="Stratis.SmartContracts.Core" Version="0.0.2-beta" />
-    <PackageReference Include="Stratis.SmartContracts.Networks" Version="0.0.1-beta" />
+    <PackageReference Include="Stratis.SmartContracts" Version="2.0.0" />
+    <PackageReference Include="Stratis.SmartContracts.Core" Version="2.0.0" />
+    <PackageReference Include="Stratis.SmartContracts.Networks" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
