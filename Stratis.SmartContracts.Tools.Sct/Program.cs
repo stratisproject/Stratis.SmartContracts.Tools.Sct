@@ -11,7 +11,7 @@ namespace Stratis.SmartContracts.Tools.Sct
     [Subcommand("deploy", typeof(Deployer))]
     [Subcommand("base58", typeof(Base58Converter))]
     [HelpOption]
-    [VersionOption("-v|--version", "v1.0.0")]
+    [VersionOption("-v|--version", "v2.0.0")]
     public class Program
     {
         public static int Main(string[] args) => CommandLineApplication.Execute<Program>(args);
