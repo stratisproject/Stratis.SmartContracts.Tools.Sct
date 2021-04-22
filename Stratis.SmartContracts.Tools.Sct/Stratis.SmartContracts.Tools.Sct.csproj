@@ -11,7 +11,7 @@
 
     <Authors>Stratis Group Ltd.</Authors>
     <Company>Stratis Group Ltd.</Company>
-    <Product>Stratis Smart Contracts</Product>
+    <Product>Stratis Smart Contract Compiler Tool</Product>
   </PropertyGroup>
 
   <ItemGroup>
