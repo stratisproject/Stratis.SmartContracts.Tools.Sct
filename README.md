@@ -11,5 +11,5 @@ dotnet run -- validate [CONTRACT_PATH_HERE] -sb
 ## Global tool
 ```
 dotnet tool install Stratis.SmartContracts.Tools.Sct --global
-sct -- validate [CONTRACT_PATH_HERE] -sb
+sct validate [CONTRACT_PATH_HERE] -sb
 ```
