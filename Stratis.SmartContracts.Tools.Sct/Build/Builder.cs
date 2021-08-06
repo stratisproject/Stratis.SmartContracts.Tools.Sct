@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using McMaster.Extensions.CommandLineUtils;
+using Stratis.SmartContracts.CLR.Compilation;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
-using McMaster.Extensions.CommandLineUtils;
 
 namespace Stratis.SmartContracts.Tools.Sct.Build
 {
@@ -32,14 +33,8 @@ namespace Stratis.SmartContracts.Tools.Sct.Build
         public int OnExecute(CommandLineApplication app, IConsole console)
         {
             console.WriteLine();
-            console.WriteLine("Smart Contract Deployer");
+            console.WriteLine("Smart Contract Builder");
             console.WriteLine();
-
-            if (!File.Exists(this.InputFile))
-            {
-                console.WriteLine($"{this.InputFile} does not exist");
-                return 1;
-            }
 
             if (File.Exists(this.OutputPath))
             {
@@ -47,24 +42,15 @@ namespace Stratis.SmartContracts.Tools.Sct.Build
                 return 1;
             }
 
-            console.WriteLine($"Reading {this.InputFile}...");
+            ContractCompilationResult result = CompilationLoader.CompileFromFileOrDirectoryName(this.InputFile, console);
 
-            string source;
-            using (var sr = new StreamReader(File.OpenRead(this.InputFile)))
+            // Check if the file was found.
+            if (result == null)
             {
-                source = sr.ReadToEnd();
-            }
-
-            console.WriteLine($"Read {this.InputFile} OK!");
-            console.WriteLine();
-
-            if (string.IsNullOrWhiteSpace(source))
-            {
-                console.WriteLine($"Empty file at {this.InputFile}");
                 return 1;
             }
 
-            ValidationServiceResult validationResult = new ValidatorService().Validate(this.InputFile, source, console, this.Params);
+            ValidationServiceResult validationResult = ValidatorService.Validate(this.InputFile, result, console, this.Params);
             if (!validationResult.Success)
                 return 1;
             else
